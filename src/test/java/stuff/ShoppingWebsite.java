@@ -2,6 +2,7 @@ package stuff;
 
 import static org.junit.Assert.*;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.junit.After;
@@ -14,6 +15,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -57,12 +61,13 @@ public class ShoppingWebsite {
 		}
 		dressesButton.click();
 		
-		WebElement element = driver.findElement(By.tagName("p"));
-		System.out.println(element.getText());
+		WebElement foo = new WebDriverWait(driver, 5L).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"header_logo\"]/a/img")));
 		
 		List<WebElement> itema = driver.findElements(By.xpath("//*[@id=\"center_column\"]/ul/li[*]/div/div[2]/h5/a"));
 		for (WebElement items : itema) {
-			System.out.println(items.getText());
+			if (items.getText().equals("Printed Dress")) {
+				items.click();
+			}
 		}
 		
 	}
