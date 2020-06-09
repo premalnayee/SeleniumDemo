@@ -34,7 +34,7 @@ public class ShoppingWebsite {
 	@SuppressWarnings("deprecation")
 	public static void setup() {
 		report = new ExtentReports();
-		ExtentHtmlReporter htmlReport = new ExtentHtmlReporter("test-output/html/extentReport.html");
+		ExtentHtmlReporter htmlReport = new ExtentHtmlReporter("test-reports/ShoppingWebsite/extentReport.html");
 		htmlReport.config().setAutoCreateRelativePathMedia(true);
 		report.attachReporter(htmlReport);
 	}
