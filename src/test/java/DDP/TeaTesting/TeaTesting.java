@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -44,10 +45,9 @@ public class TeaTesting {
 //		report.attachReporter(htmlReport);
 //	}
 	
+	
 	@Before
-	public void init() {
-		ChromeOptions opts = new ChromeOptions();
-		opts.setHeadless(false);
+	public void init() {;
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		
@@ -60,40 +60,39 @@ public class TeaTesting {
 		driver.get("http://www.practiceselenium.com/menu.html");
 		
 	    navToMenu = new HomePage(driver);
-	    navToMenu.greenTeaClick();
 	}
 
 	@When("^I navigate to the 'Menu' page$")
 	public void i_navigate_to_the_Menu_page() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		navToMenu = new HomePage(driver);
+		assertTrue(navToMenu.onRightPage());
 	}
 
 	@Then("^I can browse a list of the available products\\.$")
 	public void i_can_browse_a_list_of_the_available_products() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		navToMenu = new HomePage(driver);
+		assertTrue(navToMenu.checkOutReady());
 	}
 
 	@When("^I click the checkout button$")
 	public void i_click_the_checkout_button() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		HomePage checkOutGreenTea = new HomePage(driver);
+		checkOutGreenTea.greenTeaClick();
+		
 	}
 
 	@Then("^I am taken to the checkout page$")
 	public void i_am_taken_to_the_checkout_page() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	}
+	
+	@After
+	public void endIt() {
+		driver.close();
 	}
 
-
-	@Test
-	public void test() {
-		driver.get("http://www.practiceselenium.com/menu.html");
-		
-	    navToMenu = new HomePage(driver);
-	    navToMenu.greenTeaClick();
-	}
 
 }
